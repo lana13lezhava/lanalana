@@ -1,0 +1,509 @@
+@charset "UTF-8";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+ * Убираем внутренние отступы слева тегам списков,
+ * у которых есть атрибут class
+ * */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+ * Убираем внешние отступы body и двум другим тегам,
+ * у которых есть атрибут class
+ * */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+ * Убираем внешние отступы вертикали нужным тегам,
+ * у которых есть атрибут class
+ * */
+:where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+ * Убираем стандартный маркер маркированному списку,
+ * у которого есть атрибут class
+ * */
+:where(ul[class]) {
+  list-style: none;
+}
+
+/**
+ * Обнуляем вертикальные внешние отступы параграфа,
+ * объявляем локальную переменную для внешнего отступа вниз,
+ * чтобы избежать взаимодействие с более сложным селектором
+ * */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+ * Внешний отступ вниз для параграфа без атрибута class,
+ * который расположен не последним среди своих соседних элементов
+ * */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+ * Упрощаем работу с изображениями
+ * */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+ * Наследуем свойства шрифт для полей ввода
+ * */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+  * Пригодится в большинстве ситуаций
+  * (когда, например, нужно будет "прижать" футер к низу сайта)
+  * */
+  height: 100%;
+  /**
+  * Плавный скролл
+  * */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+  * Пригодится в большинстве ситуаций
+  * (когда, например, нужно будет "прижать" футер к низу сайта)
+  * */
+  min-height: 100%;
+  /**
+  * Унифицированный интерлиньяж
+  * */
+  line-height: 1.5;
+}
+
+/** */
+/** */
+/**
+ * Удаляем все анимации и переходы для людей,
+ * которые предпочитают их не использовать
+ * */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root {
+  --container-width: 1200px;
+  --container-padding:15px;
+}
+
+html {
+  font-size: 62.6%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  padding: 1rem;
+}
+
+.none {
+  display: none !important;
+}
+
+.container {
+  padding: 1.5rem 2rem;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.container-right {
+  padding-right: calc((100% - var(--container-width)) / 2 + var(--container-padding));
+}
+
+.container-left {
+  padding-left: calc((100% - var(--container-width)) / 2 + var(--container-padding));
+}
+
+.header {
+  min-height: 70rem;
+  background: linear-gradient(90deg, rgba(24, 43, 184, 0.7607843137) 0%, rgba(38, 51, 148, 0.54) 50%, rgba(13, 36, 215, 0.301) 100%);
+}
+
+.header a {
+  color: white;
+  text-decoration: none;
+}
+
+.header li {
+  color: white;
+  list-style-type: none;
+}
+
+.destinations a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer li {
+  color: white;
+  list-style-type: none;
+}
+
+.nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 8rem;
+  margin-bottom: 5rem;
+}
+.nav__ul {
+  display: flex;
+  column-gap: 8rem;
+  font-size: 1.7rem;
+  position: relative;
+}
+.nav__a {
+  font-size: 2.3rem;
+  font-weight: 500;
+}
+.nav__login {
+  display: flex;
+  column-gap: 8rem;
+  font-size: 1.7rem;
+}
+
+.btn {
+  padding: 1rem 2.5rem;
+  background-color: rgba(255, 255, 255, 0.1568627451);
+  border-radius: 2.7rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  transition: all 0.2s ease-in;
+}
+.btn:hover {
+  background-color: rgba(24, 43, 184, 0.7607843137);
+  transform: translateY(-1rem);
+}
+
+.nav__ul a:hover, .nav__ul a.active {
+  color: rgba(24, 43, 184, 0.7607843137);
+  font-weight: 500;
+}
+
+.row {
+  display: flex;
+}
+
+.header__content {
+  max-width: 55rem;
+}
+
+.header__img {
+  width: 55rem;
+}
+
+.header__badge {
+  font-size: 1.8rem;
+  font-weight: 300;
+  border-radius: 1.5rem;
+  color: rgba(255, 255, 255, 0.5843137255);
+}
+
+.header__title {
+  font-size: 5rem;
+  color: white;
+  font-weight: 400;
+  margin-bottom: 0.3rem;
+}
+
+.header__text {
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.3607843137);
+  font-weight: 200;
+  margin-bottom: 5rem;
+}
+
+.header__btn {
+  padding: 1rem 2.5rem;
+  background-color: rgba(255, 255, 255, 0.1568627451);
+  border-radius: 2.7rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+.header__btn:hover {
+  background-color: rgba(24, 43, 184, 0.7607843137);
+  transform: translateY(-1rem);
+}
+
+.destinations {
+  background: linear-gradient(90deg, rgba(24, 43, 184, 0.7607843137) 0%, rgba(38, 51, 148, 0.54) 50%, rgba(13, 36, 215, 0.301) 100%);
+  padding: 3rem 0 4rem;
+  overflow-x: hidden;
+}
+
+.row-content2 {
+  display: flex;
+  column-gap: 5rem;
+}
+
+.content1__img {
+  width: 55rem;
+}
+
+.content2 {
+  width: 45rem;
+}
+.content2__title {
+  font-size: 5rem;
+  color: white;
+  font-weight: 300;
+}
+.content2__text {
+  font-size: 1.9rem;
+  color: #ffffff;
+  font-weight: 200;
+  letter-spacing: 0.1rem;
+}
+.content2__text2 {
+  font-size: 1.7rem;
+  color: #ffffff;
+  font-weight: 200;
+  letter-spacing: 0.1rem;
+  margin-bottom: 4rem;
+}
+.content2__btn {
+  padding: 1rem 2.5rem;
+  background-color: rgba(255, 255, 255, 0.1568627451);
+  border-radius: 2.7rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  transition: all 0.2s ease-in;
+}
+.content2__btn:hover {
+  background-color: rgba(24, 43, 184, 0.7607843137);
+  transform: translateY(-1rem);
+}
+
+.content2-icons {
+  display: flex;
+  margin-bottom: 5rem;
+  column-gap: 2rem;
+}
+.content2-icons__icon {
+  width: 4rem;
+  transition: all 0.2s ease-in;
+}
+.content2-icons__icon:hover {
+  transform: translateY(-1rem);
+}
+
+.banner {
+  background: linear-gradient(90deg, rgba(24, 43, 184, 0.7607843137) 0%, rgba(38, 51, 148, 0.54) 50%, rgba(13, 36, 215, 0.301) 100%);
+}
+
+.banner__plate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 30rem;
+  padding: 3rem 1.5rem;
+  border-radius: 6rem;
+}
+
+.banner__title {
+  margin-bottom: 1rem;
+  font-size: 4.5rem;
+  color: white;
+  font-weight: 300;
+  text-align: center;
+}
+
+.banner__text {
+  font-size: 1.8rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.9568627451);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.banner__btn {
+  padding: 1rem 2.5rem;
+  background-color: rgba(255, 255, 255, 0.1568627451);
+  border-radius: 2.7rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  transition: all 0.2s ease-in;
+}
+.banner__btn:hover {
+  background-color: rgba(24, 43, 184, 0.7607843137);
+  transform: translateY(-1rem);
+}
+
+.subscribe {
+  padding: 3rem 0 5rem;
+}
+
+.subscribe__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.subscribe__title {
+  max-width: 49rem;
+  font-size: 5.5rem;
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+}
+
+.subscribe-form {
+  margin-bottom: 3rem;
+  border-radius: 3.5rem;
+  background-color: rgba(255, 255, 255, 0.3607843137);
+  padding: 0.5rem 0.5rem 0.5em 4.6rem;
+}
+
+.subscribe-form__input {
+  color: white;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.subscribe-form__btn {
+  color: rgba(69, 67, 67, 0.7058823529);
+  border: none;
+  padding: 1rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.3607843137);
+  border-radius: 2.7rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.subscribe-form__btn:hover {
+  background-color: rgba(24, 43, 184, 0.7607843137);
+}
+
+.footer {
+  background: linear-gradient(90deg, rgba(24, 43, 184, 0.7607843137) 0%, rgba(38, 51, 148, 0.54) 50%, rgba(13, 36, 215, 0.301) 100%);
+}
+
+.nav-footer {
+  margin-bottom: 0.2rem;
+}
+
+.ul-footer {
+  font-size: 1.4rem;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .nav {
+    display: none;
+  }
+  .header__title {
+    font-size: 4rem;
+    color: white;
+    font-weight: 300;
+    margin-bottom: 0.2rem;
+  }
+  .header__content {
+    padding: 2.5rem;
+  }
+  .subscribe__title {
+    font-size: 4rem;
+    font-weight: 300;
+  }
+  .banner__title {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 1000px) {
+  .row {
+    flex-direction: column;
+  }
+  .content1__img {
+    display: none;
+  }
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  html {
+    font-size: 60%;
+  }
+  .nav {
+    display: none;
+  }
+  .header__title {
+    font-size: 3rem;
+  }
+  .subscribe__title {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 600px) {
+  .header__img {
+    width: 40rem;
+  }
+  html {
+    font-size: 50%;
+  }
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .nav {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .header__img {
+    width: 20rem;
+  }
+  html {
+    font-size: 45%;
+  }
+  .nav {
+    display: none;
+  }
+}/*# sourceMappingURL=style.css.map */
